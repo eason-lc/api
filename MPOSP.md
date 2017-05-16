@@ -56,6 +56,7 @@ HTTP/1.1 403 Forbidden
 |-------------|-----------------------------------------|----------------------|---------------|---------------|---------------|
 | 获取验证码| [/sendMobileMessage](#sendMobileMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 获取验证码| [/sendCustomerMessage](#sendCustomerMessage)		       | urlencoded	      | POST   | 张攀攀	 | 否   |
+| 获取验证码| [/checkMobileMessage](#checkMobileMessage)		       | urlencoded	      | POST   | 张攀攀	 | 否   |
 | 登录| [/login](#login)                      | urlencoded           | POST      | 李飞     | 否   |
 | 退出| [/logout](#logout)                      | urlencoded           | POST      | 李飞     | 是   |
 | 注册| [/register](#register)                      | urlencoded           | POST   |  李飞     | 否   |
@@ -98,7 +99,7 @@ HTTP/1.1 403 Forbidden
 | 静态页面显示 | [/showHtml](#showHtml)                      | urlencoded           | GET   | 李飞     | 否   |
 | 需要登录页面显示 | [/showProtocol](#showProtocol)                      | urlencoded           | GET   | 李飞     | 是   |
 | 获取消息接口/更新消息状态 | [/message](#message)                      | urlencoded           | GET   | 李飞     | 否   |
-| 获取消息接口/变更消息状态 | [/modifyMessage](#modifyMessage)                      | urlencoded           | GET   | 张攀攀     | 否   |
+| 获取消息接口/变更消息状态 | [/modifyMessage](#modifyMessage)                      | urlencoded           | GET   | 张攀攀     | 是   |
 | 获取广告位信息 | [/banner](#banner)                      | urlencoded           | GET   | 张树彬     | 否   |
 | 广告位图片下载 | [/downloadBanner](#downloadBanner)                      | urlencoded           | GET   | 张树彬     | 否   |
 ----------------------------------------------------------------------------------
@@ -170,6 +171,41 @@ Content-Length: 100
    "respCode":"SUCCESS",
    "respMsg":"发送验证码成功,注意查收"
    
+}
+```
+##### [返回目录↑](#content-title)
+<a id="checkMobileMessage"></a>
+### 验证验证码是否正确 /checkMobileMessage
+#### 1\. 验证验证码是否正确
+请求：  
+```
+POST /checkMobileMessage HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+需要设置Cookie idCode : xxxxxxxxxxxxxxxxxxxx
+
+appVersion: "ios.未知.1.1.813"
+mobile   ： "15800000001" //手机号
+idCode   ： "1234" //验证码
+ 
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20170516190732",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "respMsg":"验证成功" 
 }
 ```
 ##### [返回目录↑](#content-title)
