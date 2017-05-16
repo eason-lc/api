@@ -98,6 +98,7 @@ HTTP/1.1 403 Forbidden
 | 静态页面显示 | [/showHtml](#showHtml)                      | urlencoded           | GET   | 李飞     | 否   |
 | 需要登录页面显示 | [/showProtocol](#showProtocol)                      | urlencoded           | GET   | 李飞     | 是   |
 | 获取消息接口/更新消息状态 | [/message](#message)                      | urlencoded           | GET   | 李飞     | 否   |
+| 获取消息接口/变更消息状态 | [/modifyMessage](#modifyMessage)                      | urlencoded           | GET   | 张攀攀     | 否   |
 | 获取广告位信息 | [/banner](#banner)                      | urlencoded           | GET   | 张树彬     | 否   |
 | 广告位图片下载 | [/downloadBanner](#downloadBanner)                      | urlencoded           | GET   | 张树彬     | 否   |
 ----------------------------------------------------------------------------------
@@ -1892,6 +1893,48 @@ Content-Length: 100
     "isSuccess":true,
     "respCode":"SUCCESS",
     "respMsg":"查询成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+
+<a id="modifyMessage"></a>
+### 更新消息状态  /modifyMessage
+#### 1\. 更新消息状态
+请求：  
+```
+GET /message HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+messageId: "56711f5b84aea1954cade27b"
+detail: false
+
+```
+
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+     
+   "respTime":"20170516165834",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "respMsg":"成功",
+   "des":"状态修改成功!",
+   "messageId":"584fb24384aee8582ca85da7"
+
+    
 }
 ```
 
