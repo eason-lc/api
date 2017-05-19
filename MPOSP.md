@@ -56,7 +56,8 @@ HTTP/1.1 403 Forbidden
 |-------------|-----------------------------------------|----------------------|---------------|---------------|---------------|
 | 获取验证码| [/sendMobileMessage](#sendMobileMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 获取验证码| [/sendCustomerMessage](#sendCustomerMessage)		       | urlencoded	      | POST   | 张攀攀	 | 否   |
-| 获取验证码| [/checkMobileMessage](#checkMobileMessage)		       | urlencoded	      | POST   | 张攀攀	 | 否   |
+| 验证验证码| [/checkMobileMessage](#checkMobileMessage)		       | urlencoded	      | POST   | 张攀攀	 | 否   |
+| 验证密码| [/validatePassword](#validatePassword)		       | urlencoded	      | POST   | 张攀攀	 | 否   |
 | 登录| [/login](#login)                      | urlencoded           | POST      | 李飞     | 否   |
 | 退出| [/logout](#logout)                      | urlencoded           | POST      | 李飞     | 是   |
 | 注册| [/register](#register)                      | urlencoded           | POST   |  李飞     | 否   |
@@ -209,6 +210,41 @@ Content-Length: 100
 }
 ```
 ##### [返回目录↑](#content-title)
+
+<a id="validatePassword"></a>
+### 验证密码是否正确 /validatePassword
+#### 1\. 验证密码是否正确
+请求：  
+```
+POST /validatePassword HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+appVersion: "ios.未知.1.1.813"
+password   ： "xxxxxxx" //密码
+ 
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20170519153057",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "respMsg":"Account and password are ok"
+}
+```
+##### [返回目录↑](#content-title)
+
 <a id="login"></a>
 ### 登录  /login
 #### 1\. 手机号登录
