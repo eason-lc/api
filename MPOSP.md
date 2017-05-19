@@ -436,9 +436,17 @@ Host: mposp.21er.tk
 Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
-
+//两中情况如果是忘记密码找回密码islogin=0 如果是已经登录变更密码 islogin=1
+//islogin=0时需要传递下面参数
+islogin : "0"
 password: "123456"
 oldPassword: "354689"
+appVersion: "ios.未知.1.1.813"
+
+//isLogin=1 时需要传递下面参数
+islogin : "0"
+mobile: "15800000009" 
+assword: "354689"
 appVersion: "ios.未知.1.1.813"
 ```
 响应： 
