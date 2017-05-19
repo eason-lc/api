@@ -480,7 +480,7 @@ oldPassword: "354689"
 appVersion: "ios.未知.1.1.813"
 
 //isLogin=1 时需要传递下面参数
-islogin : "0"
+islogin : "1"
 mobile: "15800000009" 
 assword: "354689"
 appVersion: "ios.未知.1.1.813"
