@@ -1667,7 +1667,7 @@ Content-Length: 100
     "isSuccess": true,
     "respCode": "SUCCESS",
     "respMsg": "成功",
-     "tranInfo": {
+    "tranInfo": {
 	       "transId": "21891", //交易ID
 		"merchantNo": "500000000621891",//商户编号
 		"merchantName": "xxx",//商户名称
