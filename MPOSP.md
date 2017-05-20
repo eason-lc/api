@@ -1726,7 +1726,7 @@ Content-Length: 30
 
 appVersion: "ios.未知.1.1.813"
 fileName  : "c5000000000000000.png" //图片名称
-
+type      : "banner" //如果是请求广告需要设置为banner 如果不是广告可以不填
 ```
 
 响应： 
