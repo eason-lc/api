@@ -97,7 +97,7 @@ HTTP/1.1 403 Forbidden
 | 用户协议 | [/showProtocol](#showProtocol)                      | urlencoded           | GET   | 李飞     | 是   |
 | 获取消息接口 | [/message](#message)                      | urlencoded           | GET   | 李飞     | 否   |
 | 获取广告位信息 | [/banner](#banner)                      | urlencoded           | GET   | 张树彬     | 否   |
-| 获取商户资质(3.0新加接口)| [/merchantQualify.action](#merchantQualify)| urlencoded           | POST |李飞| 是   |
+| 获取商户资质| [/merchantQualify.action](#merchantQualify)| urlencoded           | POST |李飞| 是   |
 | 交易列表查询| [/findTransList.action](#findTransList)              | urlencoded           | POST |李飞| 是   |
 | 交易明细查询| [/tranInfo.action](#tranInfo)              | urlencoded           | POST |李飞| 是   |
 | 结算列表查询| [/settleList.action](#settleList)          | urlencoded           | POST |李飞| 是   |
