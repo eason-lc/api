@@ -73,7 +73,6 @@ HTTP/1.1 403 Forbidden
 | 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 李飞     | 否   |
 | 查询交易状态| [/transStatus](#transStatus)                      | urlencoded           | POST   | 李飞     | 是   |
 | 发送交易小票接口| [/transMessage](#transMessage)                      | urlencoded           | POST   | 李飞     | 是   |
-| 查询交易| [/queryTrans](#queryTrans)                      | urlencoded           | GET   | 李飞     | 是   |
 | 联行号查询| [/bankQuery](#bankQuery)                      | urlencoded           | GET   | 李飞     | 否   |
 | 绑定/解绑用户银行卡| [/bindBankCard](#bindBankCard)                      | urlencoded           | GET   | 李飞     | 是   |
 | 获取用户银行卡列表| [/listBandCard](#listBandCard)                      | urlencoded           | GET   | 李飞     | 是   |
@@ -87,7 +86,7 @@ HTTP/1.1 403 Forbidden
 | 签名认证| [/signatureAuth](#signatureAuth)                      | urlencoded           | POST   | 张树彬    | 是   |
 | 签名认证信息回显| [/signatureAuthStatus](#signatureAuthStatus)                      | urlencoded           | GET   | 张树彬| 是   |
 | 消费 | [/sale](#sale)                      | urlencoded           | POST   | 李飞     | 是   |
-| 余额查询 | [/query](#query)                      | urlencoded           | POST   | 李飞     | 是   |
+| 余额查询 | [/queryBalance](#query)                      | urlencoded           | POST   | 李飞     | 是   |
 | 认证图片下载 | [/downloadImg](#downloadImg)                      | urlencoded           | GET   | 张树彬     | 是   |
 | IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 更换设备 | [/swiperChange](#swiperChange)                      | urlencoded           | POST   | 李飞     | 是   |
@@ -460,56 +459,6 @@ Content-Length: 100
 }
 ```
 
-##### [返回目录↑](#content-title)
-
-<a id="transStatus"></a>
-### 查询交易状态  /transStatus
-#### 1\. 查询交易状态
-请求：  
-```
-POST /transStatus HTTP/1.1
-Host: mposp.21er.tk
-Date: Thu, 03 Dec 2015 10:22:53
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Content-Length: 30
-
-amount: "11111"//原始交易金额
-origTransType: "sale"//原始交易类型
-origReqNo: "1111"//原交易请求号
-tradeFlag: false//是否为D0业务
-```
-响应： 
-
-```
-HTTP/1.1 200 OK
-Server: Nginx
-Date: Thu, 09 Apr 2015 11:36:53 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Cache-Control: no-cache
-Content-Length: 100
-
-{
-    "reqNo": 645254,
-    "merchantName": "数目数目",
-    "merchantNo": 111111111,
-    "terminalNo": 22222,
-    "operatorNo": 01,
-    "cardNoWipe": 645***254,
-    "amount": 1234,
-    "currency": "CNY",
-    "issuer": "XX银行",
-    "voucherNo": 2222,
-    "batchNo": 123,
-    "transTime": 20151130125253,
-    "refNo": 1234,
-    "authNo": 1234,
-    "respTime":"20151130125253",
-    "isSuccess":true,
-    "respCode":"SUCCESS",
-    "respMsg":"验证成功"
-}
-```
 ##### [返回目录↑](#content-title)
 <a id="transMessage"></a>
 ### 发送交易小票接口  /transMessage
