@@ -2058,29 +2058,31 @@ Content-Length: 100
     }, 
     "body": [
         {
-            "title": "广告位1", 
-            "message": "广告信息1", 
-            "imageUrl": "http://image.21er.tk/1.jpg",  //图片路径
-            "targetUrl": "http://image.21er.tk/11.jpg" //图片跳转的路径
-        }, 
-        {
-            "title": "广告位2", 
-            "message": "广告信息2", 
-            "imageUrl": "http://image.21er.tk/2.jpg", 
-            "targetUrl": "http://image.21er.tk/21.jpg"
-        }, 
-        {
-            "title": "广告位3", 
-            "message": "广告信息3", 
-            "imageUrl": "http://image.21er.tk/3.jpg", 
-            "targetUrl": "http://image.21er.tk/31.jpg"
-        }, 
-        {
-            "title": "广告位4", 
-            "message": "广告信息4", 
-            "imageUrl": "http://image.21er.tk/4.jpg", 
-            "targetUrl": "http://image.21er.tk/41.jpg"
-        }
+	   "id":16,
+ 	   "adName":"中汇-商户通轮播广告0617",
+	   "picAndroid":"201606/16/20160617144437985picAndroid.jpg",
+	   "picIos":"201606/16/20160617144437812picIos.jpg",
+	   "linkAddress":"http://www.cnepay.com/",
+	   "effectBegin":1466146042000,
+	   "effectEnd":1560679200000,
+	   "disableStatus":1,
+	   "adSort":"1",
+	   "sysUserId":0,
+	   "createTime":1466145876980
+	   },
+	   {
+	   "id":21,
+	   "adName":"中汇-商户通轮播广告0618",
+	   "picAndroid":"201606/21/20160618135955953picAndroid.jpg",
+	   "picIos":"201606/21/20160618135955915picIos.jpg",
+	   "linkAddress":"http://www.cnepay.com/",
+	   "effectBegin":1466229789000,
+	   "effectEnd":1562652000000,
+	   "disableStatus":1,
+	   "adSort":"3",
+	   "sysUserId":0,
+	   "createTime":1466229595625
+	   }
     ]
 }
 ```
