@@ -91,8 +91,8 @@ HTTP/1.1 403 Forbidden
 | IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 更换设备 | [/swiperChange](#swiperChange)                      | urlencoded           | POST   | 李飞     | 是   |
 | 静态页面显示 | [/showHtml](#showHtml)                      | urlencoded           | GET   | 李飞     | 否   |
-| 需要登录页面显示 | [/showProtocol](#showProtocol)                      | urlencoded           | GET   | 李飞     | 是   |
-| 获取消息接口/更新消息状态 | [/message](#message)                      | urlencoded           | GET   | 李飞     | 否   |
+| 用户协议 | [/showProtocol](#showProtocol)                      | urlencoded           | GET   | 李飞     | 是   |
+| 获取消息接口 | [/message](#message)                      | urlencoded           | GET   | 李飞     | 否   |
 | 获取广告位信息 | [/banner](#banner)                      | urlencoded           | GET   | 张树彬     | 否   |
 | 获取商户资质(3.0新加接口)| [/merchantQualify.action](#merchantQualify)| urlencoded           | POST |李飞| 是   |
 | 交易列表查询| [/findTransList.action](#findTransList)              | urlencoded           | POST |李飞| 是   |
@@ -610,14 +610,14 @@ Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-isDelete: "false" //绑定、解绑参数
-cardIds: "XXX YYYY"//解绑卡列表 空格区分
+isDelete: "false" //是否解绑
+cardIds: "123 124"//解绑卡ID列表 , //解绑时必传
+
+//绑定本人信用卡
 bankCard: "XXXX"
 idNumber:"XXXXX",//身份证
 mobile: "13777775555"
 reqTime: "20151124111059"
-isSelf : true //true表示添加自己的银行卡
-idCode ："1234" //短信验证码
 
 ```
 响应： 
@@ -670,17 +670,15 @@ Content-Length: 100
 {
 list:[
 {
-    "accountNo": "XXXX",
-    "bankName": "xx银行",
+    "accountNo": "XXXX",
+    "bankName": "xx银行",
     "accountName": "罗小苗",
-    "bankIndex": 1,
-    "status": 1,//认证状态
-    "cardId": 1
+    "status": 1,//认证状态(0:未认证通过, 1:通过)
+    "cardId": 1//绑定的ID
 },{
     "accountNo": "XXXX",
     "bankName": "xx银行",
     "accountName": "罗小苗",
-    "bankIndex": 3,
     "status": 1,//认证状态
     "cardId": 2
 }]
@@ -698,11 +696,11 @@ Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-ksnNo: "5010100000023402"
-activeCode: "11C718FF1FD14531"
-product: "ZFT" //产品型号
+ksnNo: "5010100000023402"//ksn号
+activeCode: "11C718FF1FD14531"//非必传项(激活码方式激活时必传)
+product: "ZFT" //产品型号,//掌富通
 model: "landim35" //设备型号
-macAddress:"XX:XX:XX:XX"
+macAddress:"XX:XX:XX:XX"//终端对应的MAC地址
 ```
 响应： 
 
@@ -736,9 +734,9 @@ Content-Length: 30
 
 name: "狗剩"
 idNumber: "341225199005063896"
-personal: 图片 //身份证正面照
-personalBack: 图片 //身份证背面照
-hPersonal： 图片 //手持身份证照片
+personal: 图片名称 //身份证正面照
+personalBack: 图片名称 //身份证背面照
+hPersonal： 图片名称 //手持身份证照片
 ```
 响应： 
 
@@ -793,8 +791,6 @@ Content-Length: 100
     "personalBack":"b500000000620995.png",//身份证背面照图片名称
     "hPersonal":"b500000000620995.png",//手持身份证照片名称
     "realReason":"用户签名与身份证名字不符",//认证失败原因
-    "idCard":"341225199005063796",//仅当为POS商户时返回
-    "realName":"张三",仅当为POS商户时返回
     "respMsg":"查询成功"
 }
 ```
@@ -865,7 +861,7 @@ Content-Length: 100
     "respCode":"SUCCESS",
     "authStatus":(0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
     "companyName":"大众食品商店",//企业名称
-    "business":"q500000000620995.png",//营业执照图片名称
+    "business":"gsdfsdfsdfsdfsd,1",//营业执照图片名称
     "regPlace":"兴华大道",//经营地址
     "businessLicense":"5DSF5SDFS5DF",//营业执照号
     "merchantReason":"商户不行",//认证失败原因
@@ -1033,16 +1029,16 @@ Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-ksnNo: "800090000004",
-reqNo: "129",
-position: "117.194778,39.113809",
-currency: "CNY",
-amount: "300",
-cardSerialNum: "001",
-icData: "XXXXXXXX",
-encPinblock: "XXXXX",
-encTracks: "TRACK2",
-checksum:"XXX"
+ksnNo: "800090000004",//设备ksn号
+reqNo: "129",//流水号
+position: "117.194778,39.113809",//地理位置经纬度信息
+amount: "300",//交易金额
+cardSerialNum: "001",//卡片序列号
+icData: "XXXXXXXX",//IC数据
+encPinblock: "XXXXX",//PIN密文
+encTracks: "TRACK2",//磁道密文，IC卡必传
+checksum:"XXX",//MAC密文
+tradeFlag:false//是否为D0交易
 
 ```
 
@@ -1076,6 +1072,7 @@ Content-Length: 100
     "authNo":"666666777777",
     "script":"ic55"
 }
+
 //当交易失败原因如下时，要求用户去绑卡
 {
     "respTime": "20170330195156",
@@ -1084,28 +1081,24 @@ Content-Length: 100
     "respMsg": "单笔交易最大限额不得大于1000元，可通过绑定本人信用卡提高交易额度"
 }
 
-
-
 ```
 ##### [返回目录↑](#content-title)
-<a id="query"></a>
-### 余额查询  /query
+<a id="queryBalance"></a>
+### 余额查询  /queryBalance
 #### 1\. 余额查询
 请求：  
 ```
-POST /query HTTP/1.1
+POST /queryBalance HTTP/1.1
 Host: mposp.21er.tk
 Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-ksnNo: "800090000004",
+ksnNo: "800090000004",//设备ksn号
 reqNo: "129",
 cardSerialNum: "001",
 icData: "XXXXXXXX",
 encPinblock: "XXXXX",
-encTracks: "TRACK2",
-checksum:"XXX"
 
 ```
 
@@ -1162,11 +1155,7 @@ Content-Length: 100
 
 {
     
-    "respTime":"20151130125253",
-    "isSuccess":true,
-    "respCode":"SUCCESS",
-    "file"：byte数组,//图片流
-    "respMsg":"查询成功"
+    图片文件
 }
 ```
 
@@ -1222,10 +1211,10 @@ Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-reqNo:"1234"
-ksnNo:"XXXXXX"
+reqNo:"1234"//流水号
+ksnNo:"XXXXXX"//新设备ksnNo
 model:"landim35"
-macAddress:"XXXXXXX"
+macAddress:"XXXXXXX"// 蓝牙设备必传
 ```
 
 响应： 
@@ -1259,7 +1248,7 @@ Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-html: "XXX.html"
+html: "XXX.html"//文件名称(agreement.html：协议说明，faq-zft.html：常见问题，register-agreement.html：注册协议)
 
 ```
 
@@ -1282,8 +1271,8 @@ Content-Length: 100
 ##### [返回目录↑](#content-title)
 
 <a id="showProtocol"></a>
-### 需要登录页面显示  /showProtocol
-#### 1\. 需要登录页面显示
+### 用户协议 /showProtocol
+#### 1\. 用户协议
 请求：  
 ```
 GET /showProtocol HTTP/1.1
@@ -1292,7 +1281,7 @@ Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-view: "XXX" //offline_product_protocol
+view: "XXX" //offline_product_protocol:用户协议
 
 ```
 
@@ -1308,14 +1297,14 @@ Cache-Control: no-cache
 Content-Length: 100
 
 {
-	HTML页面
+	jsp页面
 }
 ```
 ##### [返回目录↑](#content-title)
 
 <a id="message"></a>
-### 获取消息接口/更新消息状态  /message
-#### 1\. 获取消息接口/更新消息状态
+### 获取消息接口  /message
+#### 1\. 获取消息接口
 请求：  
 ```
 GET /message HTTP/1.1
@@ -1323,15 +1312,6 @@ Host: mposp.21er.tk
 Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
-
-//获取消息列表
-"detail": true,//获取消息
-
-//获取消息头
-"detail": false,//获取消息
-
-//变更消息阅读状态
-"messageId": "5753d725737f247007d596db"//消息id
 
 ```
 响应：  
@@ -1399,29 +1379,6 @@ Content-Length: 100
     }
 }
 
-//获取消息头
-{
-    "respTime": "20160606145626", 
-    "isSuccess": true, 
-    "respCode": "SUCCESS", 
-    "respMsg": "成功", 
-    "head": {
-        "hasUnRead": true, 
-        "totalCount": 3, 
-        "readCount": 1, 
-        "unReadCount": 2
-    }
-}
-
-//变更消息阅读状态
-{
-    "respTime": "20160606145829", 
-    "isSuccess": true, 
-    "respCode": "SUCCESS", 
-    "respMsg": "成功", 
-    "des": "状态修改成功!", 
-    "messageId": "575513d784aeddcc333a7a10"
-}
 ```
 
 ##### [返回目录↑](#content-title)
