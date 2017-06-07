@@ -2128,10 +2128,55 @@ Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Cache-Control: no-cache
 Content-Length: 100
-
 {
- 
+:   "respTime":"20170607151448",
+:   "isSuccess":true,
+:   "respCode":"SUCCESS",
+:   "respMsg":"成功",
+:   "isAuth":true, //表示是否已经实名认证， 如果没有实名认证，返回目前所有绑定的商户的结算账户信息，   如果已经实名认证，查看hasElectAcction 是否为true ,如果为false 说明 还没有开通电子账户
+:   "hasElectAcction":true, 
+:   "electAccount":"6217808000000005742",
+:   "electName":"王佳亮",
+:   "electCertNo":"362502199204095414",
+:   "electBankName":"晋中银行",
+:   "accounts":
+:   [
+:   :   {
+:   :   :   "ID":767471,
+:   :   :   "MERCHANT_NAME":"河北惠创电子商务有限公司",
+:   :   :   "MERCHANT_NO":"Z08000000721560",
+:   :   :   "ISSUER_BANK_NAME":"(香港地区)银行",
+:   :   :   "ACCOUNT_NAME":"王佳亮",
+:   :   :   "ACCOUNT_NO":"6217803088801237551",
+:   :   :   "PERSON_ID_NO":"362502199204095414",
+:   :   :   "MOBILE_NO":"13071190677",
+:   :   :   "isChange":false
+:   :   },
+:   :   {
+:   :   :   "ID":766895,
+:   :   :   "MERCHANT_NAME":"大兔子微信商户优惠",
+:   :   :   "MERCHANT_NO":"Z08000000721211",
+:   :   :   "ISSUER_BANK_NAME":"城市商业银行",
+:   :   :   "ACCOUNT_NAME":"王佳亮",
+:   :   :   "ACCOUNT_NO":"6217803088801237551",
+:   :   :   "PERSON_ID_NO":"362502199204095414",
+:   :   :   "MOBILE_NO":"13071190677",
+:   :   :   "isChange":false
+:   :   },
+:   :   {
+:   :   :   "ID":482525,
+:   :   :   "MERCHANT_NAME":"南宁市青秀加油站",
+:   :   :   "MERCHANT_NO":"Z08000000437161",
+:   :   :   "ISSUER_BANK_NAME":"招商银行",
+:   :   :   "ACCOUNT_NAME":"王佳亮",
+:   :   :   "ACCOUNT_NO":"6217803088801237551",
+:   :   :   "PERSON_ID_NO":"362502199204095414",
+:   :   :   "MOBILE_NO":"13071190677",
+:   :   :   "isChange":false
+:   :   }
+:   ]
 }
+
 ```
 ##### [返回目录↑](#content-title)
  
