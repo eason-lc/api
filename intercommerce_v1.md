@@ -2084,6 +2084,7 @@ Content-Length: 100
    "respCode":"SUCCESS",
    "respMsg":"成功",
    "isNotice": "0" //0 没有电子银行 1 有电子银行
+   "isChenge":false //false 表示没有变更到电子账户 已经变更到电子账户
 }
 //有电子银行
 {
