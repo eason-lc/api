@@ -2214,6 +2214,7 @@ Content-Length: 30
 "merchantName":XXXXXXXX, //商户名称
 "personIdNo":XXXXXXXX, //用户身份证号
 "accountNo":, //商户结算卡号
+"accountName":, //账户名
 "mobile":, //商户手机号
 ```
 响应： 
