@@ -100,6 +100,7 @@ HTTP/1.1 403 Forbidden
 | 交易列表查询| [/findTransList.action](#findTransList)              | urlencoded           | POST |李飞| 是   |
 | 交易明细查询| [/tranInfo.action](#tranInfo)              | urlencoded           | POST |李飞| 是   |
 | 结算列表查询| [/settleList.action](#settleList)          | urlencoded           | POST |李飞| 是   |
+| 获取认证状态| [/authStatus.action](#authStatus)          | urlencoded           | GET |张树彬| 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMobileMessage"></a>
 ### 获取验证码  /sendMobileMessage
@@ -1782,3 +1783,38 @@ Content-Length: 100
 ```
 
 ##### [返回目录↑](#content-title)
+<a id="authStatus"></a>
+### 获取认证状态  /authStatus
+#### 1\. 获取认证状态
+请求：  
+```
+GET /accountAuthStatus HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime":"20151130125253",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "status":"1111", //认证状态 (第一位：实名认证状态, 第二位：商户认证状态, 第三位：账户认证状态, 第四位：签名认证状态)
+    "merchantReason":"商户信誉差",//商户认证失败原因
+    "realReason":"用户信誉差",//实名认证失败原因
+    "accountReason":"账户信誉差",//账户认证失败原因
+    "signatureReason":"签名丑",//签名认证失败原因
+    "respMsg":"查询成功"
+}
+```
