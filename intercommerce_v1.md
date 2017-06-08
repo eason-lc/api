@@ -2212,9 +2212,9 @@ Content-Length: 30
 "merchantId":XXXXXXXX, //商户ID
 "merchantNo":XXXXXXXX, //商户编号
 "merchantName":XXXXXXXX, //商户名称
-"merchantIdCard":XXXXXXXX, //商户身份证号
-"merchantBankCard":, //商户结算卡号
-"mobileNo":, //商户手机号
+"personIdNo":XXXXXXXX, //用户身份证号
+"accountNo":, //商户结算卡号
+"mobile":, //商户手机号
 ```
 响应： 
 
@@ -2228,13 +2228,18 @@ Cache-Control: no-cache
 Content-Length: 100
 
 {
-    "respTime": "20161216103350",
+    response: {
+    "respTime": "20170608120052",
     "isSuccess": true,
     "respCode": "SUCCESS",
-    "respMsg": "成功",
-    "auth":true, //  true 表示验证成功 false 表示验证不成功
-    "message" : xxxxxx
-    "isNotice": "0" //0 没有电子银行 1 有电子银行
+    "respMsg": "结算账户切换成功！",
+    "account":     {
+        "accountName": "王佳亮",
+        "accountNo": "6217808000000005742",
+        "personIdNo": "362502199204095414",
+        "bankName": " 晋中银行"
+    }
+
 }
 ```
 ##### [返回目录↑](#content-title)
