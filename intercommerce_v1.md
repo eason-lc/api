@@ -2094,14 +2094,28 @@ Content-Length: 100
    "respCode":"SUCCESS",
    "respMsg":"成功",
    "isNotice": "1" //0 没有电子银行 1 有电子银行
-   "isChenge":false //false 表示没有变更到电子账户 已经变更到电子账户
-    "merchant":     {
+   "isChenge":false //false 表示没有变更到电子账户 下面会出现account的参数以方便跳转到切换电子账户界面
+    "merchant":    {
     	"merchantId" : "XXXXXX",
     	"merchantNo" : "XXXXXX"
         "merchantName": "XXX",
         "merchantBankCard": "XXXXXXXXXXXXXXXXX",
         "merchantIdCard": "XXXXXXXXXXXXXXXXXX",
  }
+   "account":     {
+        "ID": 767471,
+        "MERCHANT_NAME": "河北惠创电子商务有限公司",
+        "MERCHANT_NO": "Z08000000721560",
+        "ISSUER_BANK_NAME": "(香港地区)银行",
+        "ACCOUNT_NAME": "王佳亮",
+        "ACCOUNT_NO": "6217803088801237551",
+        "PERSON_ID_NO": "362502199204095414",
+        "MOBILE_NO": "13071190677",
+        "electAccountName": "王佳亮",
+        "electAccount": "6217808000000005742",
+        "electCertNo": "362502199204095414",
+        "electBankName": "晋中银行"
+     },
 }
 
 ```
