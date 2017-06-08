@@ -953,7 +953,7 @@ Content-Length: 30
 
 isUseActiveCode:"1"//是否使用激活码进行进件(1:是, 0:否)
 ksnNo: "5010100000023402"
-activeCode: "11C718FF1FD14531"
+activeCode: "11C718FF1FD14531"//非必传项，激活码方式进件必传
 product: "ZFT" //产品型号
 model: "landim35" //设备型号
 macAddress:"XX:XX:XX:XX"
@@ -970,11 +970,26 @@ Connection: keep-alive
 Cache-Control: no-cache
 Content-Length: 100
 
+//成功
 {
     "respTime":"20151130125253",
     "isSuccess":true,
     "respCode":"SUCCESS",
     "respMsg":"激活绑定设备成功"
+}
+//需跳转到输入激活码界面
+{
+    "respTime":"20151130125253",
+    "isSuccess":false,
+    "respCode":"ACTIVECODE_IS_NOT_NULL",
+    "respMsg":"此设备必须输入激活码"
+}
+//失败
+{
+    "respTime":"20151130125253",
+    "isSuccess":false,
+    "respCode":"ILLEGAL_ARGUMENT",
+    "respMsg":"请求错误, 请稍候再试"
 }
 ```
 ##### [返回目录↑](#content-title)
