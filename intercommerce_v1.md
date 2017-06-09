@@ -116,7 +116,7 @@ Content-Length: 30
 
 appVersion: "android.ZFT.1.2.143"
 mobile: "15801376995"
-type: "forget" //"找回密码":"forget", "重置密码":"reset", "注册":"register"
+type: "forget" //"找回密码":"forget", "重置密码":"reset", "注册":"register" ,"晋中切换电子账户":"exchange"
 ```
 响应：  
 ```
