@@ -2094,7 +2094,7 @@ Content-Length: 100
    "respCode":"SUCCESS",
    "respMsg":"成功",
    "isNotice": "1" //0 没有电子银行 1 有电子银行
-   "isChenge":false //false 表示没有变更到电子账户  下面会出现account的参数以方便跳转到切换电子账户界面 ，true 表示该商户已经切换电子账户，可以直接掉转到晋中银行sdk
+   "isChange":false //false 表示没有变更到电子账户  下面会出现account的参数以方便跳转到切换电子账户界面 ，true 表示该商户已经切换电子账户，可以直接掉转到晋中银行sdk
     "merchant":    {
     	"merchantId" : "XXXXXX",
     	"merchantNo" : "XXXXXX"
