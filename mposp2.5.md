@@ -100,6 +100,7 @@ HTTP/1.1 403 Forbidden
 | 获取消息接口/更新消息状态 | [/message](#message)                      | urlencoded           | GET   | 李飞     | 否   |
 | 获取广告位信息 | [/banner](#banner)                      | urlencoded           | GET   | 张树彬     | 否   |
 | 广告位图片下载 | [/downloadBanner](#downloadBanner)                      | urlencoded           | GET   | 张树彬     | 否   |
+| 获取商户资质 [/merchantQualify.action](#merchantQualify)| urlencoded           | POST |李飞| 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMobileMessage"></a>
 ### 获取验证码  /sendMobileMessage
@@ -208,6 +209,13 @@ Content-Length: 100
     "isMobileMerchant": true, //是否为手机商户
     "isPosMerchant": false, //是否为POS商户
     "posStatus": 0 //POS认证状态 (0未绑定 ,1待刷卡，2待认证,3实名认证通过)
+        "merchantQualify"{
+	    "terminalAuth": 0 //设备绑定状态 (0未绑定 ,1绑定激活成功),
+	    "realNameAuth": 0 //实名认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+	    "merchantAuth": 0 //商户认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+	    "accountAuth": 0 //账户认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+	    "signatureAuth": 0 //签名认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+    }
 }
 ```
 
@@ -2006,5 +2014,43 @@ Content-Length: 100
 
 {
     字节流
+}
+```
+##### [返回目录↑](#content-title)
+
+<a id="merchantQualify"></a>
+### 获取商户资质  /merchantQualify
+#### 1\. 获取商户资质（包含四审资质以及商户设备绑定状态）
+请求：  
+```
+POST /merchantQualify HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime": "20151228143800",
+    "isSuccess": true,
+    "respCode": "SUCCESS",
+    "respMsg": "成功",
+    "merchantQualify"{
+	    "terminalAuth": 0 //设备绑定状态 (0未绑定 ,1绑定激活成功),
+	    "realNameAuth": 0 //实名认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+	    "merchantAuth": 0 //商户认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+	    "accountAuth": 0 //账户认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+	    "signatureAuth": 0 //签名认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
+    }
 }
 ```
