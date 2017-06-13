@@ -101,6 +101,8 @@ HTTP/1.1 403 Forbidden
 | 获取广告位信息 | [/banner](#banner)                      | urlencoded           | GET   | 张树彬     | 否   |
 | 广告位图片下载 | [/downloadBanner](#downloadBanner)                      | urlencoded           | GET   | 张树彬     | 否   |
 | 获取商户资质  | [/merchantQualify.action](#merchantQualify)| urlencoded           | POST |李飞| 是   |
+| 交易列表查询| [/transList.action](#transList)              | urlencoded           | POST |李飞| 是   |
+| 交易明细查询| [/tranInfo.action](#tranInfo)              | urlencoded           | POST |李飞| 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMobileMessage"></a>
 ### 获取验证码  /sendMobileMessage
@@ -2053,5 +2055,108 @@ Content-Length: 100
 	    "accountAuth": 0 //账户认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
 	    "signatureAuth": 0 //签名认证 (0:未认证, 1:认证成功, 2:认证失败, 3:审核中),
     }
+}
+```
+
+##### [返回目录↑](#content-title)
+
+<a id="transList"></a>
+### 交易列表查询  /transList
+#### 1\. 交易列表查询
+请求：  
+```
+POST /transList HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+
+"appVersion": "android.ZFT.1.2.143",
+"settleType": 0,--结算类型 1-TN 2-D0 如果要查询全部则不上送改字段
+"lastID": "", --上次请求最后一笔交易的ID
+"startTime": "2016-06-06", --起始时间 yyyy-MM-dd格式
+"endTime": "2016-06-06", --结束时间 yyyy-MM-dd格式 
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime": "20151228143800",
+    "isSuccess": true,
+    "respCode": "SUCCESS",
+    "respMsg": "成功",
+    "count": 134,//交易笔数
+    "amount": 13684228,//交易总额
+    "tranList": [    
+      {
+        "tranid": 676453,--交易id
+        "transType": "sale",--交易类型 sale-消费/sale_void-撤销/auth_comp-预授权完成/auth_comp_cancel-预授权完成撤销/refund-退货 
+        "transTime": "2016-05-15 15:56:25",--交易时间
+        "transStatus": "1",--交易状态：0未知/1正常/2已冲正/3已撤销/4已退款
+        "settleType": "D+0",--结算类型
+        "amount": 100 --交易金额(分)
+      },
+    ...
+    ]
+}
+```
+
+##### [返回目录↑](#content-title)
+
+<a id="tranInfo"></a>
+### 交易明细查询  /tranInfo
+#### 1\. 交易明细查询
+请求：  
+```
+POST /tranInfo HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+
+"appVersion": "android.ZFT.1.2.143",
+"transId": "21891", //交易ID
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime": "20151228143800",
+    "isSuccess": true,
+    "respCode": "SUCCESS",
+    "respMsg": "成功",
+     "tranInfo": {
+	       "transId": "21891", //交易ID
+		"merchantNo": "500000000621891",//商户编号
+		"merchantName": "xxx",//商户名称
+		"transTime": "2016-05-15 15:56:25",//交易时间
+		"batchNo": "000001",//交易批次
+		"voucherNo": "000001",//交易流水号
+		"terminalNo": "XXXXX",//交易终端号
+		"cardNoWipe": "62226******5655",//带星号卡号
+		"transType": "sale",//交易类型 -- sale-消费/sale_void-撤销/auth_comp-预授权完成/auth_comp_cancel-预授权完成撤销/refund-退货 
+		"transStatus": 1,//交易状态 -- 0未知/1正常/2已冲正/3已撤销/4已退款
+		"settleType": "D+0",--结算类型
+		"amount": 11111,//交易金额(分)
+	}
+	
 }
 ```
