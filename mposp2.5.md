@@ -188,6 +188,7 @@ Content-Length: 30
 "appVersion": "android.ZFT.1.2.143"
 "loginName": "18911156118"
 "reqTime": "20151228143806"
+"registId": "1122312233"//推送ID
 
 ```
 响应：  
