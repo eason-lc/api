@@ -2213,7 +2213,7 @@ Content-Length: 30
 "merchantNo":XXXXXXXX, //商户编号
 "merchantName":XXXXXXXX, //商户名称
 "personIdNo":XXXXXXXX, //用户身份证号
-"accountNo":, //商户结算卡号
+"accountNo":, //要切换的电子账户
 "accountName":, //账户名
 "mobile":, //商户手机号
 ```
