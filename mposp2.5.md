@@ -396,7 +396,8 @@ Content-Length: 100
         "d0SecondFeeRate": 0.49, //d0秒到商户费率
         "d0SecondMinSettleAmount": 900000 //d0秒到商户单笔最低限额(单位：分)
     }
-    "functionDisabled": ["transD0Amount"] //本次上线禁用的接口列表
+    "perfectBill" : true,//是否支持完美账单
+    "functionDisabled": ["transD0Amount"] //本次上线禁用的接口列表
 }
 
 ```
@@ -2156,7 +2157,9 @@ Content-Length: 100
 		"cardNoWipe": "62226******5655",//带星号卡号
 		"transType": "sale",//交易类型 -- sale-消费/sale_void-撤销/auth_comp-预授权完成/auth_comp_cancel-预授权完成撤销/refund-退货 
 		"transStatus": 1,//交易状态 -- 0未知/1正常/2已冲正/3已撤销/4已退款
-		"settleType": "D+0",--结算类型
+		"authNo":'325297',//授权码
+		"referNo":'100469603840',//参考号
+		"operatorNo":'01',//操作员
 		"amount": 11111,//交易金额(分)
 	}
 	
