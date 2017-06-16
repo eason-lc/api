@@ -103,6 +103,7 @@ HTTP/1.1 403 Forbidden
 | 获取商户资质  | [/merchantQualify.action](#merchantQualify)| urlencoded           | POST |李飞| 是   |
 | 交易列表查询| [/transList.action](#transList)              | urlencoded           | POST |李飞| 是   |
 | 交易明细查询| [/tranInfo.action](#tranInfo)              | urlencoded           | POST |李飞| 是   |
+| 查询完美账单MCC列表| [/perfectBillMCC.action](#perfectBillMCC)              | urlencoded           | GET |李飞| 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMobileMessage"></a>
 ### 获取验证码  /sendMobileMessage
@@ -1488,6 +1489,7 @@ cardSerialNum: "001",
 icData: "XXXXXXXX",
 encPinblock: "XXXXX",
 encTracks: "TRACK2",
+"mccId":1111//完美账单ID
 checksum:"XXX"
 
 ```
@@ -2160,3 +2162,42 @@ Content-Length: 100
 	
 }
 ```
+##### [返回目录↑](#content-title)
+<a id="perfectBillMCC"></a>
+### 查询完美账单MCC列表  /perfectBillMCC
+#### 1\. 查询完美账单MCC列表
+请求：  
+```
+GET /perfectBillMCC HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime": "20151228143800",
+    "isSuccess": true,
+    "respCode": "SUCCESS",
+    "respMsg": "成功",
+    "mccList":[    
+      {
+        "id": 676453,--mcc id
+        "mccName": "电信服务",--行业大类
+      },
+    ...
+    ]
+}
+```
+##### [返回目录↑](#content-title)
