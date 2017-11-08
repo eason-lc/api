@@ -1,4 +1,4 @@
-#mposp接口规范
+#商户通——NEW接口规范
 > **Beta:**
 > 该API仍处于 Beta 阶段
 
