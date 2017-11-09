@@ -55,6 +55,7 @@ HTTP/1.1 403 Forbidden
 | 资源名称     | 路径                                     | Content-Type         | 请求方式     | 维护人     | 是否需要登录|
 |-------------|-----------------------------------------|----------------------|---------------|---------------|---------------|
 | 获取验证码| [/sendMessage](#sendMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
+| 注册| [/register](#register)                      | urlencoded           | POST   |  张树彬     | 否   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -89,3 +90,37 @@ Content-Length: 100
 }
 ```
 
+##### [返回目录↑](#content-title)
+<a id="register"></a>
+### 注册  /register
+#### 1\. 通过手机号注册
+请求：  
+```
+POST /register HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+mobile: "15801376995" // 手机号
+password: "ERERWERIOWJERWE2112332Y_" // 密码(加密的密文，加密规则咨询维护人) 
+idCode: 1234 //验证码
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime":"20151126184737",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"祝贺您成功注册."
+}
+```
