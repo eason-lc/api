@@ -68,8 +68,8 @@ Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
 appVersion: "ios.未知.1.1.813"
-mobile: "15801376995"
-type: "register" //注册/找回密码必传(register/forget)
+mobile: "15801376995" //手机号
+type: "register" //操作类型：注册:register 找回:forget
 ```
 响应：  
 ```
