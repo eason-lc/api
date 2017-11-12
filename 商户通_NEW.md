@@ -62,6 +62,7 @@ HTTP/1.1 403 Forbidden
 | 获取验证码| [/sendMessage](#sendMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 校验验证码| [/checkMobileMessage](#checkMobileMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 注册| [/register](#register)                      | urlencoded           | POST   | 张树彬     | 否   |
+| 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 张树彬     | 否   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -162,3 +163,36 @@ Content-Length: 100
     "respMsg":"祝贺您成功注册."
 }
 ```
+
+##### [返回目录↑](#content-title)
+<a id="forgetPassword"></a>
+### 忘记密码  /forgetPassword
+#### 1\. 忘记密码
+请求：  
+```
+POST /forgetPassword HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+password: "123456"
+mobile: "15801376995"
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime":"20151130125253",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"修改成功"
+}
