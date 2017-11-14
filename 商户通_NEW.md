@@ -63,6 +63,7 @@ HTTP/1.1 403 Forbidden
 | 校验验证码| [/checkMobileMessage](#checkMobileMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 注册| [/register](#register)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 张树彬     | 否   |
+|登录| [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -176,7 +177,7 @@ Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
-password: "123456"
+password: "123456" //密码(加密的密文，加密规则咨询维护人) 
 mobile: "15801376995"
 ```
 响应： 
@@ -196,3 +197,39 @@ Content-Length: 100
     "respCode":"SUCCESS",
     "respMsg":"修改成功"
 }
+
+```
+##### [返回目录↑](#content-title)
+<a id="login"></a>
+### 登录  /login
+#### 1\. 手机号登录
+请求：  
+```
+POST /login HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+"password": "qqqqqq" //密码(加密的密文，加密规则咨询维护人) 
+"loginName": "18911156118" 
+"registId": "1122312233"//推送ID
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime": "20151228143800",
+    "isSuccess": true,
+    "respCode": "SUCCESS",//当有新版本需要更新的商户返回特殊code ： UPGRADE_SYSTEM
+    "respMsg": "登录成功"
+}
+```
