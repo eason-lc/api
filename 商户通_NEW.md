@@ -109,7 +109,7 @@ Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
 mobile: "15801376995" // 手机号
-iCode: "1234" //验证码
+idCode: "1234" //验证码
 
 ```
 响应：  
