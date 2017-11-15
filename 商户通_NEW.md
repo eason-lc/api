@@ -66,7 +66,7 @@ HTTP/1.1 403 Forbidden
 | 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 张树彬     | 否   |
 |登录| [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
 |获取用户设备状态| [/findUserEquipment](#findUserEquipment)                      | urlencoded           | GET      | ZPP    | 是   |
-
+|激活绑定设备| [/activeAndBindEquip](#activeAndBindEquip)                    | urlencoded           | POST      | 张树彬    | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -275,5 +275,58 @@ Content-Length: 100
    "respMsg":"已绑设备"
 }
 
+```
+##### [返回目录↑](#content-title)
+<a id="activeAndBindEquip"></a>
+### 激活绑定设备  /activeAndBindEquip
+#### 1\. 激活绑定设备
+请求：  
+```
+POST /activeAndBindEquip HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+isUseActiveCode:"1"//是否使用激活码进行进件(1:是, 0:否)
+ksnNo: "5010100000023402"
+activeCode: "11C718FF1FD14531"//非必传项，激活码方式进件必传
+product: "ZFT" //产品型号
+model: "landim35" //设备型号
+macAddress:"XX:XX:XX:XX"
+appVersion: "ios.未知.1.1.813"
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+//成功
+{
+    "respTime":"20151130125253",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"激活绑定设备成功"
+}
+//需跳转到输入激活码界面
+{
+    "respTime":"20151130125253",
+    "isSuccess":false,
+    "respCode":"ACTIVECODE_IS_NOT_NULL",
+    "respMsg":"此设备必须输入激活码"
+}
+//失败
+{
+    "respTime":"20151130125253",
+    "isSuccess":false,
+    "respCode":"ILLEGAL_ARGUMENT",
+    "respMsg":"请求错误, 请稍候再试"
+}
 ```
 
