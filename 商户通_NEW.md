@@ -65,6 +65,8 @@ HTTP/1.1 403 Forbidden
 | 注册| [/register](#register)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 张树彬     | 否   |
 |登录| [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
+|获取用户设备状态| [/findUserEquipment](#findUserEquipment)                      | urlencoded           | GET      | ZPP    | 是   |
+
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -234,3 +236,44 @@ Content-Length: 100
     "respMsg": "登录成功"
 }
 ```
+##### [返回目录↑](#content-title)
+<a id="findUserEquipment"></a>
+### 登录  /findUserEquipment
+#### 1\. 查询用户绑定设备状态
+请求：
+```
+GET /login HTTP/1.1
+Host: XXXXXX:XXXX
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+"userId": "18911156118"  //用户名
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+//如果用户已经绑定设备
+{
+    "respTime": "20151228143800",
+    "isSuccess": true,
+    "respCode": "BIND_EQUIPMENT",
+    "respMsg": "以绑设备"
+}
+//如果用户没有绑定设备
+{
+   "respTime":"20171115152246",
+   "isSuccess":false,
+   "respCode":"NO_BIND_EQUIPMENT",
+   "respMsg":"未绑设备"
+}
+
+```
+
