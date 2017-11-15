@@ -247,7 +247,7 @@ Host: XXXXXX:XXXX
 Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
-
+WSSESSION: ow5bblf8ethknl59vqp8qbbt-52
 "userId": "18911156118"  //用户名
 
 ```
