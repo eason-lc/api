@@ -64,7 +64,9 @@ HTTP/1.1 403 Forbidden
 | 校验验证码| [/checkMobileMessage](#checkMobileMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 注册| [/register](#register)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 张树彬     | 否   |
-|登录| [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
+| 登录 | [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
+| 校验用户密码| [/checkUserPasswd](#checkUserPasswd)                      | urlencoded           | GET   | 张树彬     | 是   |
+| 修改密码| [/resetPassword](#resetPassword)                      | urlencoded           | POST   | 张树彬     | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -234,3 +236,69 @@ Content-Length: 100
     "respMsg": "登录成功"
 }
 ```
+
+##### [返回目录↑](#content-title)
+<a id="checkUserPasswd"></a>
+### 校验用户密码 /checkUserPasswd
+#### 1\. 校验用户密码 
+请求：  
+```
+GET /checkUserPasswd HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+password: "密码" //密码(加密的密文，加密规则咨询维护人) 
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime":"20151126184737",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="resetPassword"></a>
+### 修改密码 /resetPassword
+#### 1\. 修改密码
+请求：  
+```
+POST /resetPassword HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+password: "123456" //新密码(加密的密文，加密规则咨询维护人) 
+oldPassword: "123456" //旧密码(加密的密文，加密规则咨询维护人) 
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime":"20151130125253",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"修改成功"
+}
