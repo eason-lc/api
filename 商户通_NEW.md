@@ -306,18 +306,16 @@ Content-Length: 100
 
 ##### [返回目录↑](#content-title)
 <a id="findUserEquipment"></a>
-### 登录  /findUserEquipment
+### 查询用户绑定设备状态  /findUserEquipment
 #### 1\. 查询用户绑定设备状态
 请求：
 ```
-GET /login HTTP/1.1
+GET /findUserEquipment HTTP/1.1
 Host: XXXXXX:XXXX
 Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 WSSESSION: ow5bblf8ethknl59vqp8qbbt-52
-
-"userId": "18911156118"  //用户名
 
 ```
 响应：  
@@ -360,7 +358,6 @@ activeCode: "11C718FF1FD14531"//非必传项，激活码方式进件必传
 product: "ZFT" //产品型号
 model: "landim35" //设备型号
 macAddress:"XX:XX:XX:XX"
-appVersion: "ios.未知.1.1.813"
 ```
 响应： 
 
@@ -373,6 +370,7 @@ Connection: keep-alive
 Cache-Control: no-cache
 Content-Length: 100
 
+//成功
 {
     "respTime":"20151130125253",
     "isSuccess":true,
