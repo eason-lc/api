@@ -99,6 +99,9 @@ HTTP/1.1 403 Forbidden
 | 获取商户信息 | [/getMerchantInfo.action](#getMerchantInfo)    | urlencoded   | POST   | 张攀攀     | 是   |
 | 商户四要素认证和匹配 | [/authenticationMerchant.action](#authenticationMerchant)    | urlencoded  | POST   | 张攀攀     | 是   |
 | 获取该用户的电子账户信息 | [/getUserElectAccount.action](#getUserElectAccount)    | urlencoded  | POST   | 张攀攀     | 是   |
+| 商户结算账户管理 | [/accountManage.action](#accountManage)    | urlencoded  | POST   | 张攀攀     | 是   |
+| 商户结算账户变更 | [/changeAccount.action](#changeAccount)    | urlencoded  | POST   | 张攀攀     | 是   |
+
 ----------------------------------------------------------------------------------
 <a id="sendMobileMessage"></a>
 ### 获取验证码  /sendMobileMessage
@@ -113,7 +116,7 @@ Content-Length: 30
 
 appVersion: "android.ZFT.1.2.143"
 mobile: "15801376995"
-type: "forget" //"找回密码":"forget", "重置密码":"reset", "注册":"register"
+type: "forget" //"找回密码":"forget", "重置密码":"reset", "注册":"register" ,"晋中切换电子账户":"exchange"
 ```
 响应：  
 ```
@@ -2081,6 +2084,7 @@ Content-Length: 100
    "respCode":"SUCCESS",
    "respMsg":"成功",
    "isNotice": "0" //0 没有电子银行 1 有电子银行
+   "isChenge":false //false 表示没有变更到电子账户 
 }
 //有电子银行
 {
@@ -2090,15 +2094,154 @@ Content-Length: 100
    "respCode":"SUCCESS",
    "respMsg":"成功",
    "isNotice": "1" //0 没有电子银行 1 有电子银行
-    "merchant":     {
+   "isChange":false //false 表示没有变更到电子账户  下面会出现account的参数以方便跳转到切换电子账户界面 ，true 表示该商户已经切换电子账户，可以直接掉转到晋中银行sdk
+    "merchant":    {
     	"merchantId" : "XXXXXX",
     	"merchantNo" : "XXXXXX"
         "merchantName": "XXX",
         "merchantBankCard": "XXXXXXXXXXXXXXXXX",
         "merchantIdCard": "XXXXXXXXXXXXXXXXXX",
  }
+   "account":     {
+        "ID": 767471,
+        "MERCHANT_NAME": "河北惠创电子商务有限公司",
+        "MERCHANT_NO": "Z08000000721560",
+        "ISSUER_BANK_NAME": "(香港地区)银行",
+        "ACCOUNT_NAME": "王佳亮",
+        "ACCOUNT_NO": "6217803088801237551",
+        "PERSON_ID_NO": "362502199204095414",
+        "MOBILE_NO": "13071190677",
+        "electAccountName": "王佳亮",
+        "electAccount": "6217808000000005742",
+        "electCertNo": "362502199204095414",
+        "electBankName": "晋中银行"
+     },
 }
 
+```
+##### [返回目录↑](#content-title)
+
+<a id="accountManage"></a>
+### 商户结算账户管理  /accountManage
+#### 1\. 商户结算账户管理
+请求：  
+```
+POST /accountManage HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+"appVersion": "android.ZFT.1.2.143"
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+{
+:   "respTime":"20170607151448",
+:   "isSuccess":true,
+:   "respCode":"SUCCESS",
+:   "respMsg":"成功",
+:   "isAuth":true, //表示是否已经实名认证， 如果没有实名认证，返回目前所有绑定的商户的结算账户信息，   如果已经实名认证，查看hasElectAcction 是否为true ,如果为false 说明 还没有开通电子账户
+:   "hasElectAcction":true, 
+:   "electAccount":"6217808000000005742",
+:   "electName":"王佳亮",
+:   "electCertNo":"362502199204095414",
+:   "electBankName":"晋中银行",
+:   "accounts":
+:   [
+:   :   {
+:   :   :   "ID":767471,
+:   :   :   "MERCHANT_NAME":"河北惠创电子商务有限公司",
+:   :   :   "MERCHANT_NO":"Z08000000721560",
+:   :   :   "ISSUER_BANK_NAME":"(香港地区)银行",
+:   :   :   "ACCOUNT_NAME":"王佳亮",
+:   :   :   "ACCOUNT_NO":"6217803088801237551",
+:   :   :   "PERSON_ID_NO":"362502199204095414",
+:   :   :   "MOBILE_NO":"13071190677",
+:   :   :   "isChange":false
+:   :   },
+:   :   {
+:   :   :   "ID":766895,
+:   :   :   "MERCHANT_NAME":"大兔子微信商户优惠",
+:   :   :   "MERCHANT_NO":"Z08000000721211",
+:   :   :   "ISSUER_BANK_NAME":"城市商业银行",
+:   :   :   "ACCOUNT_NAME":"王佳亮",
+:   :   :   "ACCOUNT_NO":"6217803088801237551",
+:   :   :   "PERSON_ID_NO":"362502199204095414",
+:   :   :   "MOBILE_NO":"13071190677",
+:   :   :   "isChange":false
+:   :   },
+:   :   {
+:   :   :   "ID":482525,
+:   :   :   "MERCHANT_NAME":"南宁市青秀加油站",
+:   :   :   "MERCHANT_NO":"Z08000000437161",
+:   :   :   "ISSUER_BANK_NAME":"招商银行",
+:   :   :   "ACCOUNT_NAME":"王佳亮",
+:   :   :   "ACCOUNT_NO":"6217803088801237551",
+:   :   :   "PERSON_ID_NO":"362502199204095414",
+:   :   :   "MOBILE_NO":"13071190677",
+:   :   :   "isChange":false
+:   :   }
+:   ]
+}
+
+```
+##### [返回目录↑](#content-title)
+ 
+
+<a id="changeAccount"></a>
+### 商户结算账户变更  /changeAccount
+#### 1\. 商户结算账户变更
+请求：  
+```
+POST /changeAccount HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+"appVersion": "android.ZFT.1.2.143"
+"merchantId":XXXXXXXX, //商户ID
+"merchantNo":XXXXXXXX, //商户编号
+"merchantName":XXXXXXXX, //商户名称
+"personIdNo":XXXXXXXX, //用户身份证号
+"accountNo":, //要切换的电子账户
+"accountName":, //账户名
+"mobile":, //商户手机号
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    response: {
+    "respTime": "20170608120052",
+    "isSuccess": true,
+    "respCode": "SUCCESS",
+    "respMsg": "结算账户切换成功！",
+    "account":     {
+        "accountName": "王佳亮",
+        "accountNo": "6217808000000005742",
+        "personIdNo": "362502199204095414",
+        "bankName": " 晋中银行"
+    }
+
+}
 ```
 ##### [返回目录↑](#content-title)
 
