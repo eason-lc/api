@@ -67,6 +67,7 @@ HTTP/1.1 403 Forbidden
 | 登录 | [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
 | 校验用户密码| [/checkUserPasswd](#checkUserPasswd)                      | urlencoded           | GET   | 张树彬     | 是   |
 | 修改密码| [/resetPassword](#resetPassword)                      | urlencoded           | POST   | 张树彬     | 是   |
+|查询用户设备绑定状态| [/findUserEquipment](#findUserEquipment)                      | urlencoded           | GET      | zpp     | 否   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
