@@ -69,7 +69,7 @@ HTTP/1.1 403 Forbidden
 | 修改密码| [/resetPassword](#resetPassword)                      | urlencoded           | POST   | 张树彬     | 是   |
 |获取用户设备状态| [/findUserEquipment](#findUserEquipment)                      | urlencoded           | GET      | 张攀攀    | 是   |
 |激活绑定设备| [/activeAndBindEquip](#activeAndBindEquip)                    | urlencoded           | POST      | 张攀攀    | 是   |
-| 签到| [/signin](#signin)                      | urlencoded           | POST   | 张树彬     | 是   |
+| 签到| [/signIn](#signin)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 交易 | [/sale](#sale)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 查询交易状态| [/transStatus](#transStatus)                      | urlencoded           | POST   | 张树彬     | 是   |
 | IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张树彬     | 是   |
@@ -395,6 +395,7 @@ Content-Length: 100
     "respCode":"ILLEGAL_ARGUMENT",
     "respMsg":"请求错误, 请稍候再试"
 }
+```
 
 ##### [返回目录↑](#content-title)
 <a id="signIn"></a>
@@ -407,7 +408,6 @@ Host: mposp.21er.tk
 Date: Thu, 03 Dec 2015 10:22:53
 Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
-
 ```
 响应：  
 ```
@@ -436,6 +436,7 @@ Content-Length: 100
         }, 
     "traceNo": 20//交易流水号
 }
+```
 
 ##### [返回目录↑](#content-title)
 <a id="sale"></a>
@@ -509,6 +510,7 @@ Content-Length: 100
     "respCode": "TRANS_SERVER_TIME_OUT",
     "respMsg": "交易超时"
 }
+```
 
 ##### [返回目录↑](#content-title)
 
