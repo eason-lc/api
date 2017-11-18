@@ -69,6 +69,10 @@ HTTP/1.1 403 Forbidden
 | 修改密码| [/resetPassword](#resetPassword)                      | urlencoded           | POST   | 张树彬     | 是   |
 |获取用户设备状态| [/findUserEquipment](#findUserEquipment)                      | urlencoded           | GET      | 张攀攀    | 是   |
 |激活绑定设备| [/activeAndBindEquip](#activeAndBindEquip)                    | urlencoded           | POST      | 张攀攀    | 是   |
+| 签到| [/signin](#signin)                      | urlencoded           | POST   | 张树彬     | 是   |
+| 交易 | [/sale](#sale)                      | urlencoded           | POST   | 张树彬     | 是   |
+| 查询交易状态| [/transStatus](#transStatus)                      | urlencoded           | POST   | 张树彬     | 是   |
+| IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张树彬     | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -391,3 +395,209 @@ Content-Length: 100
     "respCode":"ILLEGAL_ARGUMENT",
     "respMsg":"请求错误, 请稍候再试"
 }
+
+##### [返回目录↑](#content-title)
+<a id="signIn"></a>
+### 签到  /signIn
+#### 1\. 签到
+请求：  
+```
+POST /signIn HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime": "20160308185017", 
+    "isSuccess": true, 
+    "respCode": "SUCCESS", 
+    "respMsg": "签到成功",
+    "needUpdateIC": false, //是否写IC公钥，true：要，false:不要
+    "ICkey":{aids,rids},//IC公钥，此处省略
+    "terminalSecretKey": { //工作密钥
+        "keyType": "3DES", 
+        "keyValue": "7806C6F5AEF0F01160F11390F9B97EFD", 
+        "checkValue": "C086F687", 
+        "isBluetooth": true, //是否蓝牙设备
+        "macAddress": "8C:DE:52:C3:51:0D",//MAC地址 
+        "ksnNo": "7000100000008177"//终端SN号
+        }, 
+    "traceNo": 20//交易流水号
+}
+
+##### [返回目录↑](#content-title)
+<a id="sale"></a>
+### 交易  /sale
+#### 1\. 交易
+请求：  
+```
+POST /sale HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+ksnNo: "800090000004",//终端SN号
+reqNo: "129",//交易流水号
+position: "117.194778,39.113809",//定位的经纬度
+tradeFlag：false, 是否D0交易
+currency: "CNY",//无
+amount: "300",//交易金额
+cardSerialNum: "01",//交易
+icData: "XXXXXXXX",//IC卡数据，非必传，仅有IC卡交易必传
+encTracks: "TRACK2",//二磁道信息，非必传，仅有IC卡交易必传
+encPinblock: "XXXXX",//加密的PIN密文，非必传
+mccId:1111//完美账单MCCID,非必传
+checksum:"XXX"，
+nct:"2"，//是否非接交易， 2：非接：其他：否
+
+```
+
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "reqNo":"129",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "merchantName":"XXX",//商户名
+    "merchantNo":"111",    //商户号
+    "terminalNo":"22222",   //终端号
+    "operatorNo":"01",    //操作员
+    "resultCode":"00",    //响应码
+    "cardNoWipe":"333**8233",    //卡号密文
+    "amount":"300",    //交易金额
+    "currency":"CNY",    
+    "voucherNo":"000130",   
+    "batchNo":"001234",   //批次号
+    "transTime":"20151212125959",//加以时间   
+    "refNo":"666666",
+    "authNo":"666666777777",//授权号
+    "script":"ic55"//IC数据
+}
+//绑卡弹窗
+{
+    "respTime": "20170330195156",
+    "isSuccess": false,
+    "respCode": "LIMIT_AMOUNT",
+    "respMsg": "单笔交易最大限额不得大于1000元，可通过绑定本人信用卡提高交易额度"
+}
+//查询交易状态弹窗
+{
+    "respTime": "20170330195156",
+    "isSuccess": false,
+    "respCode": "TRANS_SERVER_TIME_OUT",
+    "respMsg": "交易超时"
+}
+
+##### [返回目录↑](#content-title)
+
+<a id="transStatus"></a>
+### 查询交易状态  /transStatus
+#### 1\. 查询交易状态
+请求：  
+```
+POST /transStatus HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+amount: 11111 //交易金额
+origReqNo: "1111"//交易流水号
+tradeFlag: true//是否D0交易
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "reqNo": 645254,
+    "merchantName": "数目数目",
+    "merchantNo": 111111111,
+    "terminalNo": 22222,
+    "operatorNo": 01,
+    "cardNoWipe": 645***254,
+    "amount": 1234,
+    "currency": "CNY",
+    "issuer": "XX银行",
+    "voucherNo": 2222,
+    "batchNo": 123,
+    "transTime": 20151130125253,
+    "refNo": 1234,
+    "authNo": 1234,
+    "respTime":"20151130125253",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"验证成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="transNotify"></a>
+### IC回调  /transNotify
+#### 1\. IC回调
+请求：  
+```
+POST /transNotify HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+reqNo:"1234"//交易流水号
+origTransTime:"20151212070809"//原始交易时间
+origTransType:"sale"//原始交易类型
+origReqNo:"1234"//原始交易流水号
+icData:"asfakfjasklfdsa"//IC卡数据
+cardNo:"622266000000"//交易卡号
+cardSerialNum:"01"//
+tradeFlag:false//是否D0交易
+```
+
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+    "respTime":"20151130125253",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"查询成功"
+}
+```
