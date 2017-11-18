@@ -69,7 +69,7 @@ HTTP/1.1 403 Forbidden
 | 修改密码| [/resetPassword](#resetPassword)                      | urlencoded           | POST   | 张树彬     | 是   |
 |获取用户设备状态| [/findUserEquipment](#findUserEquipment)                      | urlencoded           | GET      | 张攀攀    | 是   |
 |激活绑定设备| [/activeAndBindEquip](#activeAndBindEquip)                    | urlencoded           | POST      | 张攀攀    | 是   |
-| 签到| [/signIn](#signin)                      | urlencoded           | POST   | 张树彬     | 是   |
+| 签到| [/signIn](#signIn)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 交易 | [/sale](#sale)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 查询交易状态| [/transStatus](#transStatus)                      | urlencoded           | POST   | 张树彬     | 是   |
 | IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张树彬     | 是   |
