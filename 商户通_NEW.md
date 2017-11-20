@@ -62,7 +62,7 @@ HTTP/1.1 403 Forbidden
 |-------------|-----------------------------------------|----------------------|---------------|---------------|---------------|
 | 获取验证码| [/sendMessage](#sendMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 校验验证码| [/checkMobileMessage](#checkMobileMessage)                      | urlencoded           | POST   | 张树彬     | 否   |
-| 注册| [/register](#register)                      | urlencoded           | POST   | 张树彬     | 否   |
+| 注册 | [/register](#register)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 登录 | [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
 | 校验用户密码| [/checkUserPasswd](#checkUserPasswd)                      | urlencoded           | GET   | 张树彬     | 是   |
@@ -72,8 +72,8 @@ HTTP/1.1 403 Forbidden
 | 签到| [/signIn](#signIn)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 交易 | [/sale](#sale)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 查询交易状态| [/transStatus](#transStatus)                      | urlencoded           | POST   | 张树彬     | 是   |
-| IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张树彬     | 是   |
- ICkey回调接口| [/downloadFinished](#downloadFinished)                      | urlencoded           | POST   | 张攀攀     | 是   |
+| IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张树彬     | 是   |
+| ICkey回调接口| [/downloadFinished](#downloadFinished)                      | urlencoded           | POST   | 张攀攀     | 是   |
 | 联行号查询| [/bankQuery](#bankQuery)                      | urlencoded           | GET   | 张攀攀     | 否   |
 | 绑定/解绑用户银行卡| [/bindBankCard](#bindBankCard)                      | urlencoded           | GET   | 张攀攀     | 是   |
 | 获取用户银行卡列表| [/listBandCard](#listBandCard)                      | urlencoded           | GET   |  张攀攀    | 是   |
@@ -87,6 +87,7 @@ HTTP/1.1 403 Forbidden
 | 签名认证| [/signatureAuth](#signatureAuth)                      | urlencoded           | POST   | 张攀攀    | 是   |
 | 签名认证信息回显| [/signatureAuthStatus](#signatureAuthStatus)                      | urlencoded           | GET   | 张攀攀| 是   |
 | 更换设备 | [/swiperChange](#swiperChange)                      | urlencoded           | POST   | 张攀攀     | 是   |
+| 发送交易短信| [/transMessage](#transMessage)                      | urlencoded           | POST   | 张树彬     | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -1275,3 +1276,40 @@ Content-Length: 100
 ```
 
 ##### [返回目录↑](#content-title)
+<a id="transMessage"></a>
+### 发送交易小票接口  /transMessage
+#### 1\. 发送交易小票接口
+请求：  
+```
+POST /transMessage HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+amount: "11111"//原始交易金额
+terminalNo: "44444"//终端号
+merchantNo: "2333"//商户号
+batchNo: "12"//批次号
+reqNo: "1111"//交易流水号
+mobile: "13500001111"//要发送的手机号
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "respMsg":"短信发送成功,注意查收"
+}
+```
