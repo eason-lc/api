@@ -76,7 +76,7 @@ HTTP/1.1 403 Forbidden
  ICkey回调接口| [/downloadFinished](#downloadFinished)                      | urlencoded           | POST   | 张攀攀     | 是   |
 | 联行号查询| [/bankQuery](#bankQuery)                      | urlencoded           | GET   | 张攀攀     | 否   |
 | 绑定/解绑用户银行卡| [/bindBankCard](#bindBankCard)                      | urlencoded           | GET   | 张攀攀     | 是   |
-| 获取用户银行卡列表| [/listBandCard](#listBandCard)                      | urlencoded           | GET   | 李飞     | 是   |
+| 获取用户银行卡列表| [/listBandCard](#listBandCard)                      | urlencoded           | GET   |  张攀攀    | 是   |
 | 获取ICKEY| [/getIcKey](#getIcKey)                    | urlencoded           | POST      | 张攀攀    | 否   |
 | 实名认证| [/realNameAuth](#realNameAuth)                      | urlencoded           | POST   | 张攀攀     | 是   |
 | 实名认证信息回显| [/realNameAuthStatus](#realNameAuthStatus)                      | urlencoded           | GET   | 张攀攀  | 是   |
@@ -86,7 +86,6 @@ HTTP/1.1 403 Forbidden
 | 账户认证信息回显| [/accountAuthStatus](#accountAuthStatus)                      | urlencoded           | GET   | 张攀攀    | 是   |
 | 签名认证| [/signatureAuth](#signatureAuth)                      | urlencoded           | POST   | 张攀攀    | 是   |
 | 签名认证信息回显| [/signatureAuthStatus](#signatureAuthStatus)                      | urlencoded           | GET   | 张攀攀| 是   |
-| IC回调 | [/transNotify](#transNotify)                      | urlencoded           | POST   | 张攀攀     | 是   |
 | 更换设备 | [/swiperChange](#swiperChange)                      | urlencoded           | POST   | 张攀攀     | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
@@ -680,44 +679,7 @@ Content-Length: 100
 
 
 ```
-##### [返回目录↑](#content-title)
-<a id="perfectBillMCC"></a>
-### 查询完美账单MCC列表  /perfectBillMCC
-#### 1\. 查询完美账单MCC列表
-请求：  
-```
-GET /perfectBillMCC HTTP/1.1
-Host: mposp.21er.tk
-Date: Thu, 03 Dec 2015 10:22:53
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Content-Length: 30
 
-```
-响应： 
-
-```
-HTTP/1.1 200 OK
-Server: Nginx
-Date: Thu, 09 Apr 2015 11:36:53 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Cache-Control: no-cache
-Content-Length: 100
-
-{
-    "respTime": "20151228143800",
-    "isSuccess": true,
-    "respCode": "SUCCESS",
-    "respMsg": "成功",
-    "mccList":[    
-      {
-        "id": 676453,--mcc id
-        "mccName": "电信服务",--行业大类
-      },
-    ...
-    ]
-}
-```
 ##### [返回目录↑](#content-title)
 
 <a id="realNameAuth"></a>
@@ -1196,44 +1158,7 @@ list:[
 }]
 ]
 ```
-##### [返回目录↑](#content-title)
-<a id="perfectBillMCC"></a>
-### 查询完美账单MCC列表  /perfectBillMCC
-#### 1\. 查询完美账单MCC列表
-请求：  
-```
-GET /perfectBillMCC HTTP/1.1
-Host: mposp.21er.tk
-Date: Thu, 03 Dec 2015 10:22:53
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Content-Length: 30
 
-```
-响应： 
-
-```
-HTTP/1.1 200 OK
-Server: Nginx
-Date: Thu, 09 Apr 2015 11:36:53 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Cache-Control: no-cache
-Content-Length: 100
-
-{
-    "respTime": "20151228143800",
-    "isSuccess": true,
-    "respCode": "SUCCESS",
-    "respMsg": "成功",
-    "mccList":[    
-      {
-        "id": 676453,--mcc id
-        "mccName": "电信服务",--行业大类
-      },
-    ...
-    ]
-}
-```
 ##### [返回目录↑](#content-title)
 
 <a id="downloadFinished"></a>
@@ -1310,48 +1235,6 @@ Content-Length: 100
 }
 ```
 
-##### [返回目录↑](#content-title)
-
-<a id="transNotify"></a>
-### IC回调  /transNotify
-#### 1\. IC回调
-请求：  
-```
-POST /transNotify HTTP/1.1
-Host: mposp.21er.tk
-Date: Thu, 03 Dec 2015 10:22:53
-Content-Type: application/x-www-form-urlencoded; charset=utf-8
-Content-Length: 30
-
-appVersion: "ios.未知.1.1.813"
-reqNo:"1234"
-origTransTime:"20151212070809"
-origTransType:"sale"
-origReqNo:"1234"
-icData:"asfakfjasklfdsa"
-cardNo:"622266000000"
-cardSerialNum:"01"
-tradeType:1 //交易类型(1:T1, 16:D0, 17:D0秒到)
-```
-
-响应： 
-
-```
-HTTP/1.1 200 OK
-Server: Nginx
-Date: Thu, 09 Apr 2015 11:36:53 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Cache-Control: no-cache
-Content-Length: 100
-
-{
-    "respTime":"20151130125253",
-    "isSuccess":true,
-    "respCode":"SUCCESS",
-    "respMsg":"查询成功"
-}
-```
 ##### [返回目录↑](#content-title)
 
 <a id="swiperChange"></a>
