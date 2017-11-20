@@ -349,19 +349,26 @@ Content-Length: 100
 
 //如果用户已经绑定设备
 {
-    "respTime": "20151228143800",
+     "respTime": "20171118192014",
     "isSuccess": true,
-    "respCode": "BIND_EQUIPMENT",
-    "respMsg": "已绑设备"
+    "respCode": "SUCCESS",
+    "respMsg": "BIND_EQUIPMENT",
+    "ksn": "9100100000000027",
+    "productModel": "gwv206",
+    "status": "3330",
+    "merchantReason": "",
+    "realReason": "",
+    "signatureReason": "",
+    "accountReason": "",
+    "isMerchantD0": true
 }
 //如果用户没有绑定设备
 {
    "respTime":"20171115152246",
    "isSuccess":false,
    "respCode":"NO_BIND_EQUIPMENT",
-   "respMsg":"已绑设备"
+   "respMsg":"未绑设备"
 }
-
 ```
 ##### [返回目录↑](#content-title)
 <a id="activeAndBindEquip"></a>
