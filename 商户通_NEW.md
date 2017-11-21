@@ -88,7 +88,7 @@ HTTP/1.1 403 Forbidden
 | 签名认证信息回显| [/signatureAuthStatus](#signatureAuthStatus)                      | urlencoded           | GET   | 张攀攀| 是   |
 | 更换设备 | [/swiperChange](#swiperChange)                      | urlencoded           | POST   | 张攀攀     | 是   |
 | 发送交易短信| [/transMessage](#transMessage)                      | urlencoded           | POST   | 张树彬     | 是   |
-| 获取完美账单信息| [/perfectBillMCC](#perfectBillMCC)                      | urlencoded           | GET   | 张树彬     | 是   |
+| 查询完美账单MCC列表| [/perfectBillMCC](#perfectBillMCC)                      | urlencoded           | GET   | 张树彬     | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
