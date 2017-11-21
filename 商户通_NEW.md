@@ -88,6 +88,7 @@ HTTP/1.1 403 Forbidden
 | 签名认证信息回显| [/signatureAuthStatus](#signatureAuthStatus)                      | urlencoded           | GET   | 张攀攀| 是   |
 | 更换设备 | [/swiperChange](#swiperChange)                      | urlencoded           | POST   | 张攀攀     | 是   |
 | 发送交易短信| [/transMessage](#transMessage)                      | urlencoded           | POST   | 张树彬     | 是   |
+| 获取完美账单信息| [/perfectBillMCC](#perfectBillMCC)                      | urlencoded           | GET   | 张树彬     | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -1313,5 +1314,43 @@ Content-Length: 100
    "isSuccess":true,
    "respCode":"SUCCESS",
    "respMsg":"短信发送成功,注意查收"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="perfectBillMCC"></a>
+### 查询完美账单MCC列表  /perfectBillMCC
+#### 1\. 查询完美账单MCC列表
+请求：  
+```
+GET /perfectBillMCC HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+position: "1.1.1.1"//经纬度
+
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "perfectBillBlackStatus":true//是否显示完美账单,
+   "perfectBill":true//是否允许完美账单,
+   "mccList" : [1:"餐饮",2："娱乐"],
+   "respMsg":"成功"
 }
 ```
