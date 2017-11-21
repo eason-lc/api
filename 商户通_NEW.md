@@ -255,7 +255,8 @@ Content-Length: 100
     "respTime": "20151228143800",
     "isSuccess": true,
     "respCode": "SUCCESS",
-    "respMsg": "登录成功"
+    "respMsg": "登录成功",
+    "strokeNumber": 3//交易限制的笔画数
 }
 ```
 
