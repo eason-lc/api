@@ -360,7 +360,9 @@ Content-Length: 100
     "realReason": "",
     "signatureReason": "",
     "accountReason": "",
-    "isMerchantD0": true
+    "isMerchantD0": true,
+    "bluetoothName":"gwv-0001",//蓝牙名称
+    "macAddress":"A1:D3:34:24"//MAC地址
 }
 //如果用户没有绑定设备
 {
