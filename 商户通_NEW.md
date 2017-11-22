@@ -489,6 +489,7 @@ encPinblock: "XXXXX",//加密的PIN密文，非必传
 mccId:1111//完美账单MCCID,非必传
 checksum:"XXX"，
 nct:"2"，//是否非接交易， 2：非接：其他：否
+signature:xxx//交易小票文件
 
 ```
 
