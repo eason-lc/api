@@ -1461,9 +1461,11 @@ Content-Length: 100
    "respTime":"20151125161740",
    "isSuccess":true,
    "respCode":"SUCCESS",
-   "cateringType":"餐饮",
-   "storeType":"日用百货",
-   "superMarket" : "超市",
+   "parmMap":[
+    "cateringType":"餐饮",
+    "storeType":"日用百货",
+    "superMarket" : "超市"
+   ]
    "respMsg":"成功"
 }
 ```
