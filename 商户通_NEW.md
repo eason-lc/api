@@ -391,7 +391,8 @@ Content-Length: 100
     "respMsg": "BIND_EQUIPMENT",
     "ksn": "9100100000000027",
     "productModel": "gwv206",
-    "status": "3330",
+    "name": "张攀攀",//姓名
+    "status": "3330",
     "merchantReason": "",
     "realReason": "",
     "signatureReason": "",
