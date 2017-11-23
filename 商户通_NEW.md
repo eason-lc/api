@@ -92,6 +92,8 @@ HTTP/1.1 403 Forbidden
 | 查询完美账单MCC列表| [/perfectBillMCC](#perfectBillMCC)                      | urlencoded           | GET   | 张树彬     | 是   |
 | 查询扫码支付开通状态| [/enableOlinePay](#enableOlinePay)                      | urlencoded           | POST   | 张树彬     | 是   |
 | 查询扫码支付类目| [/queryOnlinePayCategory](#queryOnlinePayCategory)                      | urlencoded   | POST   | 张树彬  | 是  |
+| 开通扫码支付| [/reportOnlinePayMerchant](#reportOnlinePayMerchant)                      | urlencoded   | POST   | 张树彬  | 是  |
+| 扫码交易| [/saleOnline](#saleOnline)                      | urlencoded   | POST   | 张树彬  | 是  |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -1462,6 +1464,87 @@ Content-Length: 100
    "cateringType":"餐饮",
    "storeType":"日用百货",
    "superMarket" : "超市",
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="reportOnlinePayMerchant"></a>
+### 开通扫码支付 /reportOnlinePayMerchant
+#### 1\. 开通扫码支付
+请求：  
+```
+POST /reportOnlinePayMerchant HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+merchantName:"小张杂货铺"//商户名称
+position:"12.3,3.2"//经纬度信息
+categoryName : "餐饮"//所选类目
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "wechatStatus":1//,微信开通状态
+   "aliStatus":1//支付宝开通状态,
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="saleOnline"></a>
+### 扫码交易 /saleOnline
+#### 1\. 扫码交易
+请求：  
+```
+POST /saleOnline HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+amount:100//交易金额
+payServiceCode:"wechatPay" //支付类型 微信：wechatPay，支付宝：aliPay
+ksnNo : "9100000000000000"//终端ksn号
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "merchantName":"商户名"//,商户名
+   "transNo":"1111"//流水号,
+   "orderNo":"111"//订单号
+   "resultCode" : "00"//响应码
+   "amount":100//交易金额
+   "transTime":"2017/12/12 12:00:00"//交易时间
+   "qrCode":"https://www.baidu.com"//二维码地址
    "respMsg":"成功"
 }
 ```
