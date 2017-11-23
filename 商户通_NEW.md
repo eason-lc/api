@@ -66,6 +66,7 @@ HTTP/1.1 403 Forbidden
 | 忘记密码| [/forgetPassword](#forgetPassword)                      | urlencoded           | POST   | 张树彬     | 否   |
 | 登录 | [/login](#login)                      | urlencoded           | POST      | 张树彬     | 否   |
 | 校验用户密码| [/checkUserPasswd](#checkUserPasswd)                      | urlencoded           | GET   | 张树彬     | 是   |
+| 校验邀请码| [/checkInvitationCode](#checkInvitationCode)                      | urlencoded           | GET   | 张树彬     | 否   |
 | 修改密码| [/resetPassword](#resetPassword)                      | urlencoded           | POST   | 张树彬     | 是   |
 |获取用户设备状态| [/findUserEquipment](#findUserEquipment)                      | urlencoded           | GET      | 张攀攀    | 是   |
 |激活绑定设备| [/activeAndBindEquip](#activeAndBindEquip)                    | urlencoded           | POST      | 张攀攀    | 是   |
@@ -170,6 +171,7 @@ Content-Length: 30
 
 mobile: "15801376995" // 手机号
 password: "ERERWERIOWJERWE2112332Y_" // 密码(加密的密文，加密规则咨询维护人) 
+invitationCode : "34DZFS" //邀请码
 
 ```
 响应：  
@@ -273,6 +275,38 @@ Content-Type: application/x-www-form-urlencoded; charset=utf-8
 Content-Length: 30
 
 password: "密码" //密码(加密的密文，加密规则咨询维护人) 
+
+```
+响应：  
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+{
+    "respTime":"20151126184737",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="checkInvitationCode"></a>
+### 校验邀请码 /checkInvitationCode
+#### 1\. 校验邀请码 
+请求：  
+```
+GET /checkInvitationCode HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+invitationCode: "DSAF4A" //邀请码
 
 ```
 响应：  
