@@ -94,6 +94,9 @@ HTTP/1.1 403 Forbidden
 | 查询扫码支付类目| [/queryOnlinePayCategory](#queryOnlinePayCategory)                      | urlencoded   | POST   | 张树彬  | 是  |
 | 开通扫码支付| [/reportOnlinePayMerchant](#reportOnlinePayMerchant)                      | urlencoded   | POST   | 张树彬  | 是  |
 | 扫码交易| [/saleOnline](#saleOnline)                      | urlencoded   | POST   | 张树彬  | 是  |
+| 获取用户捆绑的POS商户信息| [/userMerchantInfo](#userMerchantInfo)                      | urlencoded   | GET   | 张树彬  | 是  |
+| 我的邀请码| [/myInvitationCode](#myInvitationCode)                      | urlencoded   | GET   | 张树彬  | 是  |
+| 我的邀请记录| [/myInvitationRecord](#myInvitationRecord)                      | urlencoded   | GET   | 张树彬  | 是  |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -1547,6 +1550,114 @@ Content-Length: 100
    "amount":100//交易金额
    "transTime":"2017/12/12 12:00:00"//交易时间
    "qrCode":"https://www.baidu.com"//二维码地址
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="userMerchantInfo"></a>
+### 获取用户捆绑的商户信息 /userMerchantInfo
+#### 1\. 获取用户捆绑的商户信息
+请求：  
+```
+GET /userMerchantInfo HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "merchantInfoList":[
+    ["merchantName":"小张", merchantNo:"Z080000000000001"],
+    ["merchantName":"小王", merchantNo:"Z080000000000002"],
+    ...
+   ]
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="myInvitationCode"></a>
+### 我的邀请码 /myInvitationCode
+#### 1\. 我的邀请码
+请求：  
+```
+GET /myInvitationCode HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "invitationCode"："EWXZAD",//邀请码
+   "downloadUrl"："http://www.vcpos.cn/download.html",//APP下载地址
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="myInvitationRecord"></a>
+### 我的邀请记录 /myInvitationRecord
+#### 1\. 我的邀请记录
+请求：  
+```
+GET /myInvitationRecord HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "ydayAddCustomerCount"：0,//昨日新增注册人数
+   "ydaySumCustomerCount"：1,//截止昨日累计注册人数
    "respMsg":"成功"
 }
 ```
