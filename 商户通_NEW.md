@@ -1505,8 +1505,8 @@ Content-Length: 100
    "respTime":"20151125161740",
    "isSuccess":true,
    "respCode":"SUCCESS",
-   "wechatStatus":1//,微信开通状态
-   "aliStatus":1//支付宝开通状态,
+   "wechatResult":1//,微信开通状态
+   "aliResult":1//支付宝开通状态,
    "respMsg":"成功"
 }
 ```
@@ -1584,8 +1584,8 @@ Content-Length: 100
    "isSuccess":true,
    "respCode":"SUCCESS",
    "merchantInfoList":[
-    ["merchantName":"小张", merchantNo:"Z080000000000001"],
-    ["merchantName":"小王", merchantNo:"Z080000000000002"],
+    ["merchantType":"pos", "merchantName":"小张", merchantNo:"Z080000000000001"],
+    ["merchantType":"pos","merchantName":"小王", merchantNo:"Z080000000000002"],
     ...
    ]
    "respMsg":"成功"
