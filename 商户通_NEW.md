@@ -1699,7 +1699,8 @@ Content-Length: 100
     ...
     ],//商户列表
    "userCashBackSummInfo":[
-    amountThisMon:10000,//本月即将失效额度
+    merchantNo:"50000000001",//设置的默认商户号
+    amountThisMon:10000,//本月即将失效额度
     amountLastMon:10000,//下月末即将失效额度
     amountTotalMon:20000,//免手续费刷卡额度
     amountTotalConsume:50000//我要免累计刷卡金额
