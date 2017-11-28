@@ -97,6 +97,8 @@ HTTP/1.1 403 Forbidden
 | 获取用户捆绑的POS商户信息| [/userMerchantInfo](#userMerchantInfo)                      | urlencoded   | GET   | 张树彬  | 是  |
 | 我的邀请码| [/myInvitationCode](#myInvitationCode)                      | urlencoded   | GET   | 张树彬  | 是  |
 | 我的邀请记录| [/myInvitationRecord](#myInvitationRecord)                      | urlencoded   | GET   | 张树彬  | 是  |
+| 校验是否绑定默认商户| [/checkIsBindDefaultMerchant](#checkIsBindDefaultMerchant)        | urlencoded   | POST   | 张树彬  | 是  |
+| 设置我要免默认商户| [/setDefaultMerchant](#setDefaultMerchant)        | urlencoded   | POST   | 张树彬  | 是  |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -1658,6 +1660,85 @@ Content-Length: 100
    "respCode":"SUCCESS",
    "ydayAddCustomerCount"：0,//昨日新增注册人数
    "ydaySumCustomerCount"：1,//截止昨日累计注册人数
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="checkIsBindDefaultMerchant"></a>
+### 校验是否绑定默认商户 /checkIsBindDefaultMerchant
+#### 1\. 校验是否绑定默认商户
+请求：  
+```
+POST /checkIsBindDefaultMerchant HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "isSetDefaultMerchant"：false,//是否设置默认商户
+   "merchantList"：[
+    [merchantType:'vcpos_d0',merchantName:'掌富通商户(D0)',merchantNo:'5000000000000001'],
+    ...
+    ],//商户列表
+   "userCashBackSummInfo":[
+    amountThisMon:10000,//本月即将失效额度
+    amountLastMon:10000,//下月末即将失效额度
+    amountTotalMon:20000,//免手续费刷卡额度
+    amountTotalConsume:50000//我要免累计刷卡金额
+    ]
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="setDefaultMerchant"></a>
+### /我要免设置默认商户 /setDefaultMerchant
+#### 1\. /我要免设置默认商户
+请求：  
+```
+POST /setDefaultMerchant HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+merchantNo:"5000000001"
+merchantType:"vcpos_d0"
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
    "respMsg":"成功"
 }
 ```
