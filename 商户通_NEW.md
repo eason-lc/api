@@ -100,6 +100,7 @@ HTTP/1.1 403 Forbidden
 | 校验是否绑定默认商户| [/checkIsBindDefaultMerchant](#checkIsBindDefaultMerchant)        | urlencoded   | POST   | 张树彬  | 是  |
 | 设置我要免默认商户| [/setDefaultMerchant](#setDefaultMerchant)        | urlencoded   | POST   | 张树彬  | 是  |
 | 获取我要免消费明细| [/findMerchantSaleInfo](#findMerchantSaleInfo)        | urlencoded   | POST   | 张树彬  | 是  |
+| 余额查询 | [/query](#query)                      | urlencoded           | POST   | 张树彬     | 是   |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -1786,5 +1787,49 @@ Content-Length: 100
     ...
    ],
    "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="query"></a>
+### 余额查询  /query
+#### 1\. 余额查询
+请求：  
+```
+POST /query HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+ksnNo: "800090000004",//设备ksn号
+reqNo: 129,//交易流水号
+cardSerialNum: "01",
+icData: "XXXXXXXX",//IC 数据
+encPinblock: "XXXXX",//PIN block
+
+```
+
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+{
+    "reqNo":"129",
+    "isSuccess":true,
+    "respCode":"SUCCESS",
+    "balance":"XXX",
+    "resultCode":"00",    
+    "currency":"CNY",    
+    "issuer":"XX银行",
+    "cardNoWipe":"4444****888",
+    "transTime":"20151212125959", 
+    "script":"ic55"
 }
 ```
