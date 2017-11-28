@@ -99,6 +99,7 @@ HTTP/1.1 403 Forbidden
 | 我的邀请记录| [/myInvitationRecord](#myInvitationRecord)                      | urlencoded   | GET   | 张树彬  | 是  |
 | 校验是否绑定默认商户| [/checkIsBindDefaultMerchant](#checkIsBindDefaultMerchant)        | urlencoded   | POST   | 张树彬  | 是  |
 | 设置我要免默认商户| [/setDefaultMerchant](#setDefaultMerchant)        | urlencoded   | POST   | 张树彬  | 是  |
+| 获取我要免消费明细| [/findMerchantSaleInfo](#findMerchantSaleInfo)        | urlencoded   | POST   | 张树彬  | 是  |
 ----------------------------------------------------------------------------------
 <a id="sendMessage"></a>
 ### 获取验证码  /sendMessage
@@ -1740,6 +1741,50 @@ Content-Length: 100
    "respTime":"20151125161740",
    "isSuccess":true,
    "respCode":"SUCCESS",
+   "respMsg":"成功"
+}
+```
+
+##### [返回目录↑](#content-title)
+<a id="findMerchantSaleInfo"></a>
+### /获取我要免消费明细 /findMerchantSaleInfo
+#### 1\. /获取我要免消费明细
+请求：  
+```
+POST /findMerchantSaleInfo HTTP/1.1
+Host: mposp.21er.tk
+Date: Thu, 03 Dec 2015 10:22:53
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+Content-Length: 30
+
+merchantNo:"5000000001"
+count:10//每页要展示的条数
+lastID:0//最后一笔交易的ID
+
+```
+响应： 
+
+```
+HTTP/1.1 200 OK
+Server: Nginx
+Date: Thu, 09 Apr 2015 11:36:53 GMT
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Cache-Control: no-cache
+Content-Length: 100
+
+{
+   "respTime":"20151125161740",
+   "isSuccess":true,
+   "respCode":"SUCCESS",
+   "transList":[
+    [saleName:"刷卡消费",
+    saleTime:"2010-01-20  15:33:06",
+    amount:-5000.00,
+    availableAmount:54050 //剩余额度
+    ],
+    ...
+   ],
    "respMsg":"成功"
 }
 ```
