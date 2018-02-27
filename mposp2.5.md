@@ -2235,7 +2235,8 @@ Content-Length: 100
     "isSuccess": true,
     "respCode": "SUCCESS",
     "respMsg": "成功",
-    "isNaamMoney":false,//是否扣取押金
+    "isNaamMoney":false,//是否已扣取押金
+    "isExistNaamRecord":false,//是否存在押金记录
     "cashPledge":8800,//押金金额, 单位：分
     "awardMoney":0,//奖励金, 单位：分
     "isActivityEnd":false//活动是否结束
