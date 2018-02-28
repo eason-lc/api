@@ -2279,7 +2279,7 @@ Content-Length: 100
     "respCode": "SUCCESS",
     "respMsg": "成功",
     "totalRecords": 3,//总条数
-    "bottomPageNo": 2,//下页数
+    "bottomPageNo": 2,//总页数
     "list":[
     	[
 		"acqMerchantId":123,//系统户ID
