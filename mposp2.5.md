@@ -2258,7 +2258,8 @@ Content-Length: 30
 "mccId" : 111,//商户大类对应的MCCID
 "amount" : 10000, //交易金额，单位：分
 "pageSize" : 10, //每页展示的条数
-"pageNo" : 1 //页数
+"pageNo" : 1, //页数
+"isDnTrans" : false//是否D0交易
 
 ```
 响应： 
