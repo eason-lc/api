@@ -2196,7 +2196,8 @@ Content-Length: 100
     "isSuccess": true,
     "respCode": "SUCCESS",
     "respMsg": "成功",
-    "mccList":[    
+    "isDisplayAcqMerchant":true,//是否显示完美账单的系统户（仅在isSuccess为true时才会返回）
+    "mccList":[    
       {
         "id": 676453,--mcc id
         "mccName": "电信服务",--行业大类
